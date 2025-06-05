@@ -37,6 +37,7 @@ runs:
       shell: bash
       run: |
         brew install doxygen --formula
+        brew install swig
 
     - name: Install Linux deps
       if: ${{ startsWith(runner.os, 'Linux') }}
