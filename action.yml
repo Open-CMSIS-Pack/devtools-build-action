@@ -28,6 +28,7 @@ inputs:
   target:
     description: 'Product to be build e.g. buildmgr'
     required: true
+
 runs:
   using: "composite"
   steps:
@@ -35,10 +36,7 @@ runs:
       if: ${{ startsWith(runner.os, 'macOS') }}
       shell: bash
       run: |
-        brew install \
-          ninja \
-          doxygen \
-          swig
+        brew install doxygen --formula
 
     - name: Install Linux deps
       if: ${{ startsWith(runner.os, 'Linux') }}
