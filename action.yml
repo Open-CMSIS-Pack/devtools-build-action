@@ -32,6 +32,12 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - name: Install macOS deps
+      if: ${{ startsWith(runner.os, 'macOS') }}
+      shell: bash
+      run: |
+        brew install doxygen --formula
+
     - name: Install Linux deps
       if: ${{ startsWith(runner.os, 'Linux') }}
       shell: bash
