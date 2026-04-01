@@ -36,14 +36,7 @@ runs:
       if: ${{ startsWith(runner.os, 'macOS') }}
       shell: bash
       run: |
-        if ! brew list --formula | grep -q '^doxygen$'; then
-          brew install doxygen
-        fi
-    
-        if ! brew list --formula | grep -q '^swig$'; then
-          brew install swig
-        fi
-    
+        brew bundle --file="${{ github.action_path }}/Brewfile" --no-lock
         doxygen --version
         swig -version
 
