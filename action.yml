@@ -36,7 +36,7 @@ runs:
       if: ${{ startsWith(runner.os, 'macOS') }}
       shell: bash
       run: |
-        brew bundle --file="${{ github.action_path }}/Brewfile" --no-lock
+        brew bundle --file="${{ github.action_path }}/Brewfile"
         doxygen --version
         swig -version
 
