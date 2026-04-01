@@ -32,12 +32,20 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: Install macOS deps
+    - name: Install macOS deps (only if missing)
       if: ${{ startsWith(runner.os, 'macOS') }}
       shell: bash
       run: |
-        brew install doxygen --formula
-        brew install swig
+        if ! brew list --formula | grep -q '^doxygen$'; then
+          brew install doxygen
+        fi
+    
+        if ! brew list --formula | grep -q '^swig$'; then
+          brew install swig
+        fi
+    
+        doxygen --version
+        swig -version
 
     - name: Install Linux deps
       if: ${{ startsWith(runner.os, 'Linux') }}
